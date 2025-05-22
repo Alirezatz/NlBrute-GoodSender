@@ -26,3 +26,6 @@ Send good.txt value to Telegram. Developed By @Aliz_n_86
 
 
 5 Now you can connect. :)
+
+
+![Connected](https://github.com/user-attachments/assets/5762aef0-4ab8-47ae-8764-4f8533e29d52)
