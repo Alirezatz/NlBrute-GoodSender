@@ -61,17 +61,7 @@ namespace Good_Sender {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=304,Y=10}.
-        /// </summary>
-        public static System.Drawing.Point contextMenuStrip1_TrayLocation {
-            get {
-                object obj = ResourceManager.GetObject("contextMenuStrip1.TrayLocation", resourceCulture);
-                return ((System.Drawing.Point)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=137,Y=10}.
+        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=37,Y=10}.
         /// </summary>
         public static System.Drawing.Point folderBrowserDialog1_TrayLocation {
             get {
@@ -81,7 +71,7 @@ namespace Good_Sender {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=459,Y=10}.
+        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=205,Y=12}.
         /// </summary>
         public static System.Drawing.Point notifyIcon1_TrayLocation {
             get {

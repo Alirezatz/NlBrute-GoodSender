@@ -40,7 +40,7 @@ namespace NlBrute_GoodSender
                     if (File.Exists(URLNlBrute + @"\good.txt"))
                     {
 
-                        string[] FileGood = File.ReadAllLines(URLNlBrute + @"\good.txt", System.Text.Encoding.Unicode);
+                        string[] FileGood = File.ReadAllLines(URLNlBrute + @"\good.txt");
                         foreach (var nS in FileGood)
                         {
                             if (!Sended.Exists(x => x == nS) && nS != "")
@@ -139,7 +139,7 @@ namespace NlBrute_GoodSender
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
-                this.Hide();
+                this.ShowInTaskbar = false;
                 notifyIcon1.ShowBalloonTip(2000, "INFO", "Applicaion Minimized", ToolTipIcon.Info);
             }
         }
@@ -161,31 +161,17 @@ namespace NlBrute_GoodSender
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (contextMenuStrip1.Visible == true)
+            if (this.WindowState == FormWindowState.Minimized)
             {
-                contextMenuStrip1.Visible = false;
+                this.ShowInTaskbar = true;
+                this.WindowState = FormWindowState.Normal;
             }
-            else
+            else if (this.WindowState == FormWindowState.Normal || this.WindowState == FormWindowState.Maximized)
             {
-                contextMenuStrip1.Show(MousePosition);
+                this.WindowState = FormWindowState.Minimized;
+                this.ShowInTaskbar = false;
+                
             }
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void hideToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
-        private void showToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
         }
         #endregion
     }
